@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: stg_house_prices
+    description: "Staging layer for House Prices; normalized, with engineered features + encodings."
+    columns:
+      - name: id
+        tests: [not_null, unique]
+      - name: saleprice
+        description: "Target variable"
+      - name: kitchenqual
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Ex','Gd','TA','Fa','Po','None']
+      - name: functional
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Typ','Min1','Min2','Mod','Maj1','Maj2','Sev','Sal']
+      - name: fireplacequ
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Ex','Gd','TA','Fa','Po','None']
+      - name: garagefinish
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Fin','RFn','Unf','None']
+      - name: paveddrive
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Y','P','N']
+      - name: poolqc
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Ex','Gd','TA','Fa','None']
+
+  - name: clean_house_prices
+    description: "ML-ready feature table for model training."
+    columns:
+      - name: id
+        tests: [not_null, unique]
+      - name: saleprice
+        tests: [not_null]
+      - name: grlivarea
+        tests: [not_null]
+      - name: totalbaths
+        tests: [not_null]

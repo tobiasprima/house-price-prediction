@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: house_prices_raw
+    schema: house_prices_raw
+    tables:
+      - name: raw_house_prices
