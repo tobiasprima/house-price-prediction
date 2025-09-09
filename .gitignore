@@ -1,0 +1,77 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+.eggs/
+dist/
+build/
+pip-wheel-metadata/
+.venv/
+venv/
+env/
+ENV/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# --- Data ---
+data/raw/
+data/interim/
+data/processed/
+*.csv
+*.tsv
+*.parquet
+*.xlsx
+
+# --- Models ---
+models/*.pkl
+models/*.joblib
+models/*.h5
+models/*.onnx
+models/*.json
+
+# --- Logs & Outputs ---
+logs/
+*.log
+*.out
+*.err
+
+# --- dbt ---
+dbt/target/
+dbt/dbt_modules/
+dbt/.user.yml
+
+# --- Airflow ---
+airflow/airflow.db
+airflow/airflow-webserver.pid
+airflow/logs/
+airflow/__pycache__/
+
+# --- FastAPI / Uvicorn ---
+*.db
+*.sqlite3
+
+# --- Docker ---
+*.pid
+*.tar
+*.bak
+
+# --- VSCode / IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS-specific ---
+.DS_Store
+Thumbs.db
+
+# --- Secrets ---
+.env
+*.key
+*.pem
