@@ -32,7 +32,7 @@ norm AS (
     "YearRemodAdd"      AS yearremodadd,
     COALESCE("GarageYrBlt", 0) AS garageyrblt,
 
-    -- some high-signal numeric Kaggle fields you mentioned (optional, keep adding as needed)
+    -- some high-signal numeric Kaggle fields
     "MSSubClass"        AS mssubclass,
     "LotArea"           AS lotarea,
     "OverallQual"       AS overallqual,
