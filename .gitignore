@@ -75,3 +75,6 @@ Thumbs.db
 .env
 *.key
 *.pem
+
+# --- Models ---
+models/
