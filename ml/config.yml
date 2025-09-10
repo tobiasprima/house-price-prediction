@@ -15,4 +15,4 @@ training:
   test_size: 0.2
   random_state: 42
   save_model: true      # false = just experiment, true = save to disk
-  model_version: 0      # bump this when saving a new model
+  model_version: 1      # bump this when saving a new model
