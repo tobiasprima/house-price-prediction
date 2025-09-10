@@ -1,0 +1,13 @@
+database:
+  url: postgresql://admin:admin@localhost:5432/house_prices
+model:
+  type: RandomForest
+  hyperparameters:
+    n_estimators: 200
+    min_samples_split: 2
+    min_samples_leaf: 1
+    max_features: log2
+    max_depth: 50
+training:
+  test_size: 0.2
+  random_state: 42
