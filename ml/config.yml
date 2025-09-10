@@ -1,0 +1,18 @@
+database:
+  url: "postgresql://admin:admin@localhost:5432/house_prices"
+
+model:
+  type: "XGBoost"
+  hyperparameters:
+    n_estimators: 1000
+    learning_rate: 0.05
+    max_depth: 6
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+
+training:
+  test_size: 0.2
+  random_state: 42
+  save_model: true      # false = just experiment, true = save to disk
+  model_version: 1      # bump this when saving a new model

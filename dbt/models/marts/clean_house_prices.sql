@@ -16,6 +16,14 @@ SELECT
   mosold,
   yrsold,
 
+  -- high-signal numeric features
+  overallqual,
+  overallcond,
+  lotarea,
+  totalbsmtsf,
+  firstflrsf,
+  secondflrsf,
+
   -- ordinal encodings ready for models
   kitchenqual_enc,
   functional_enc,
