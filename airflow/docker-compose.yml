@@ -1,15 +1,53 @@
-version: '3'
+version: '3.8'
+
 services:
-  airflow:
+  # Airflow metadata database
+  postgres:
+    image: postgres:15
+    container_name: airflow_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow_meta
+    volumes:
+      - postgres_airflow_data:/var/lib/postgresql/data
+
+  # Airflow Webserver
+  airflow-webserver:
     image: apache/airflow:2.8.0
+    restart: always
+    depends_on:
+      - postgres
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
-      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow_meta
     volumes:
       - ./dags:/opt/airflow/dags
+      - ./requirements.txt:/opt/airflow/requirements.txt
       - ../ml:/opt/airflow/project/ml
       - ../dbt:/opt/airflow/project/dbt
       - ../data:/opt/airflow/data
     ports:
       - "8080:8080"
     command: webserver
+
+  # Airflow Scheduler
+  airflow-scheduler:
+    image: apache/airflow:2.8.0
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow_meta
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./requirements.txt:/opt/airflow/requirements.txt
+      - ../ml:/opt/airflow/project/ml
+      - ../dbt:/opt/airflow/project/dbt
+      - ../data:/opt/airflow/data
+    command: scheduler
+
+volumes:
+  postgres_airflow_data:
